@@ -32,6 +32,7 @@ const Header = () => {   // { isAuthenticated = false, user }
 
    const logoutHandler = ()=>{
     console.log("Logout")
+    onClose();
    }
   // const dispatch = useDispatch();
 
