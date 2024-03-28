@@ -16,6 +16,9 @@ import NotFound from './components/Layout/NotFound/NotFound';
 import PaymentSuccess from './components/Payments/PaymentSuccess';
 import PaymentFail from './components/Payments/PaymentFail';
 import CoursePage from './components/CoursePage/CoursePage';
+import Profile from './components/Profile/Profile';
+import ChangePassword from './components/Profile/ChangePassword';
+import UpdateProfile from './components/Profile/UpdateProfile';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
         <Route path='/Course/:id' element={<CoursePage/> }/>
         <Route path='/Contact' element={<Contact/> }/>
         <Route path='/request' element={<Request/> }/>
+        <Route path='/profile' element={<Profile/> }/>
+        <Route path='/changepassword' element={<ChangePassword/> }/>
+        <Route path='/updateprofile' element={<UpdateProfile/> }/>
         <Route path='/about' element={<About/> }/>
         <Route path='/login' element={<Login/>} />
         <Route path='/Register' element={<Register/> } />
