@@ -20,6 +20,13 @@ import Profile from './components/Profile/Profile';
 import ChangePassword from './components/Profile/ChangePassword';
 import UpdateProfile from './components/Profile/UpdateProfile';
 
+// Admin Dashboard Routes import
+
+import Dashboard from './components/Admin/Dashboard/Dashboard';
+import CreateCourse from './components/Admin/CreateCourse/CreateCourse';
+import AdminCourses from './components/Admin/AdminCourses/AdminCourses';
+import Users from './components/Admin/Users/Users';
+
 function App() {
   return (
     <Router>
@@ -42,6 +49,14 @@ function App() {
         <Route path='*' element={<NotFound/> } />
         <Route path='/paymentsuccess' element={<PaymentSuccess/> } />
         <Route path='/paymentfail' element={<PaymentFail/> } />
+            
+            {/* Admin Routes */}
+
+            <Route path='/admin/dashboard' element={<Dashboard/> } />
+            <Route path='/admin/createcourse' element={<CreateCourse/> } />
+            <Route path='/admin/courses' element={<AdminCourses/> } />
+            <Route path='/admin/users' element={<Users/> } />
+
 
       </Routes>
       <Footer/>
