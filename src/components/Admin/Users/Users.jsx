@@ -1,58 +1,157 @@
-import { Button, VStack } from '@chakra-ui/react';
-import React from 'react';
 import {
-  RiAddCircleFill,
-  RiDashboardFill,
-  RiEyeFill,
-  RiUser3Fill,
-} from 'react-icons/ri';
-import { Link, useLocation } from 'react-router-dom';
+  Box,
+  Button,
+  Grid,
+  Heading,
+  HStack,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react';
+import React, { useEffect } from 'react';
+import { RiDeleteBin7Fill } from 'react-icons/ri';
+import cursor from '../../../assets/images/cursor.png';
+import Sidebar from '../Sidebar';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { deleteUser, getAllUsers, updateUserRole,} from '../../../redux/actions/admin';
+// import toast from 'react-hot-toast';
 
 const Users = () => {
-  const location = useLocation();
+  // const { users, loading, error, message } = useSelector(state => state.admin);
+
+  // const dispatch = useDispatch();
+
+  const users =[   // temprary user data
+    {
+      _id: "kashdfkjshdfsdfsdf",
+      name: "shubhbhanshu",
+      role: "admin",
+      subscription:{
+        status : "active",
+
+
+      },
+      email: "shubh@gmail.com",
+
+    }
+  ]
+
+  const updateHandler = userId => {
+    // dispatch(updateUserRole(userId));
+    console.log(userId);
+  };
+  const deleteButtonHandler = userId => {
+    // dispatch(deleteUser(userId));
+    console.log(userId);
+
+  };
+
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error);
+  //     dispatch({ type: 'clearError' });
+  //   }
+
+  //   if (message) {
+  //     toast.success(message);
+  //     dispatch({ type: 'clearMessage' });
+  //   }
+
+  //   dispatch(getAllUsers());
+  // }, [dispatch, error, message]);
+
   return (
-    <VStack spacing={'8'} p="16" boxShadow={'-2px 0 10px rgba(107,70,193,0.5)'}>
-      <LinkButton
-        Icon={RiDashboardFill}
-        text="Dashboard"
-        url={'dashboard'}
-        active={location.pathname === '/admin/dashboard'}
-      />
-      <LinkButton
-        Icon={RiAddCircleFill}
-        text="Create Course"
-        url={'createcourse'}
-        active={location.pathname === '/admin/createcourse'}
-      />
-      <LinkButton
-        Icon={RiEyeFill}
-        text="Courses"
-        url={'courses'}
-        active={location.pathname === '/admin/courses'}
-      />
-      <LinkButton
-        Icon={RiUser3Fill}
-        text="Users"
-        url={'users'}
-        active={location.pathname === '/admin/users'}
-      />
-    </VStack>
+    <Grid
+      css={{
+        cursor: `url(${cursor}), default`,
+      }}
+      minH={'100vh'}
+      templateColumns={['1fr', '5fr 1fr']}
+    >
+      <Box p={['0', '16']} overflowX="auto">
+        <Heading
+          textTransform={'uppercase'}
+          children="All Users"
+          my="16"
+          textAlign={['center', 'left']}
+        />
+
+        <TableContainer w={['100vw', 'full']}>
+          <Table variant={'simple'} size="lg">
+            <TableCaption>All available users in the database</TableCaption>
+
+            <Thead>
+              <Tr>
+                <Th>Id</Th>
+                <Th>Name</Th>
+                <Th>Email</Th>
+                <Th>Role</Th>
+                <Th>Subscription</Th>
+                <Th isNumeric>Action</Th>
+              </Tr>
+            </Thead>
+
+            <Tbody>
+              {users &&
+                users.map(item => (
+                  <Row
+                    updateHandler={updateHandler}
+                    deleteButtonHandler={deleteButtonHandler}
+                    key={item._id}
+                    item={item}
+                    //loading={loading}
+                  />
+                ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </Box>
+
+      <Sidebar />
+    </Grid>
   );
 };
 
 export default Users;
 
-function LinkButton({ url, Icon, text, active }) {   
+function Row({ item, updateHandler, deleteButtonHandler, loading }) {
   return (
-    <Link to={`/admin/${url}`}>
-      <Button
-        fontSize={'larger'}
-        variant="ghost"
-        colorScheme={active ? 'purple' : ''}
-      >
-        <Icon style={{ margin: '4px' }} />
-        {text}
-      </Button>
-    </Link>
+    <Tr>
+      <Td>#{item._id}</Td>
+      <Td>{item.name}</Td>
+      <Td>{item.email}</Td>
+      <Td>{item.role}</Td>
+      <Td>
+        {item.subscription && item.subscription.status === 'active'
+          ? 'Active'
+          : 'Not Active'}
+      </Td>
+
+      <Td isNumeric>
+        <HStack justifyContent={'flex-end'}>
+          <Button
+            onClick={() => updateHandler(item._id)}
+            variant={'outline'}
+            color="purple.500"
+           // isLoading={loading}
+          >
+            Change Role
+          </Button>
+
+          <Button
+            onClick={() => deleteButtonHandler(item._id)}
+            color={'purple.600'}
+          //  isLoading={loading}
+          >
+            <RiDeleteBin7Fill />
+          </Button>
+        </HStack>
+      </Td>
+    </Tr>
   );
 }
