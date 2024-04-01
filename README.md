@@ -66,3 +66,26 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+
+
+
+
+
+<!-- server dependencies -  -->
+<!-- 
+ "bcrypt": "^5.1.1",  user id or password save in hash value
+ "cloudinary": "^2.1.0", course thumbnail which is refer by poster and video uploaded in cloudinary
+ "cookie-parser": "^1.4.6", request.cookie ko acces krne k liye
+ "cors": "^2.8.5", for origin fetching , our server in other addres and frontend in other address (alag alag hosting k baad bhi api call krne k liye core)
+ "datauri": "^4.1.0", 
+ "dotenv": "^16.4.5", configuration k andar jo variable hoge vo is file me aayege
+ "jsonwebtoken": "^9.0.2", for login we made jwt token and cokkies me token store kr dege
+ "multer": "^1.4.5-lts.1", middleware we wil use this to get access of files with the help of requrest.file or jo file milegi uska url access krege datauri
+ "node-cron": "^3.0.3", kesi ek fix time pr bar bar ek function call hota rahega jo bhi isme dege (ex har month ke 1 tark ko ek fuction call ho to iska use krege)
+
+"nodemailer": "^6.9.13", mail ko send krne k liye
+ "razorpay": "^2.9.2", for payment interegarion
+    "validator": "^13.11.0" email ko varify krne k liye-->
